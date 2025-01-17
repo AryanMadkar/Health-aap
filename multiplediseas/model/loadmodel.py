@@ -15,5 +15,5 @@ heart_model = load_model(
 )
 
 brest_cancer_model = load_model(
-    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/brest_cancer.sav"
+    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/brestcaner.sav"
 )
