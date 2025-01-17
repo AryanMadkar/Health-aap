@@ -7,16 +7,16 @@ def load_model(filepath):
 
 
 diabitie_model = load_model(
-    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/diabitese.sav"
+    "multiplediseas/model/diabitese.sav"
 )
 
 heart_model = load_model(
-    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/heart_deseas.sav"
+    "multiplediseas/model/heart_deseas.sav"
 )
 
 brest_cancer_model = load_model(
-    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/brestcaner.sav"
+    "multiplediseas/model/brestcaner.sav"
 )
 lungcancer_model = load_model(
-    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/lung_cance.sav"
+    "multiplediseas/model/lung_cance.sav"
 )

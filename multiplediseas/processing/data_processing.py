@@ -1,5 +1,4 @@
 from sklearn.preprocessing import StandardScaler
-import pandas as pd
 
 
 def scale_data(data, scaler=None):
