@@ -6,17 +6,11 @@ def load_model(filepath):
         return pickle.load(f)
 
 
-diabitie_model = load_model(
-    "multiplediseas/model/diabitese.sav"
-)
+diabitie_model = load_model("multiplediseas/model/diabitese.sav")
 
-heart_model = load_model(
-    "multiplediseas/model/heart_deseas.sav"
-)
+heart_model = load_model("multiplediseas/model/heart_deseas.sav")
 
-brest_cancer_model = load_model(
-    "multiplediseas/model/brestcaner.sav"
-)
-lungcancer_model = load_model(
-    "multiplediseas/model/lung_cance.sav"
-)
+brest_cancer_model = load_model("multiplediseas/model/brestcaner.sav")
+lungcancer_model = load_model("multiplediseas/model/lung_cance.sav")
+
+insurancemodel = load_model("multiplediseas/model/insurance_model.pkl")

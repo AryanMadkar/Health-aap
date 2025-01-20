@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from processing.data_processing import scale_data
+from processing.brestcancerprocessing import scale_data_brest
 from model.loadmodel import brest_cancer_model
 
 
@@ -52,7 +52,7 @@ def brestcancer_prediction_page():
         input_data_array = np.array(input_data, dtype=np.float64).reshape(1, -1)
 
         # Scale the data (assumes scale_data function returns the scaled data)
-        scaled_data, _ = scale_data(input_data_array)
+        scaled_data, _ = scale_data_brest(input_data_array)
 
         # Perform prediction
         prediction = brest_cancer_model.predict(scaled_data)

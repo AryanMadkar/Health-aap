@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from processing.data_processing import scale_data
+from processing.heartprocessing import scale_data_heart
 from model.loadmodel import heart_model
 
 
@@ -31,9 +31,7 @@ def heart_prediction_page():
             "Asymptomatic",
         ].index(cp)
 
-        ca = st.selectbox(
-            "Number of Major Vessels Colored ", options=[0, 1, 2, 3, 4]
-        )
+        ca = st.selectbox("Number of Major Vessels Colored ", options=[0, 1, 2, 3, 4])
 
     with col2:
         trestbps = st.number_input("Resting Blood Pressure (mm Hg)", min_value=0)
@@ -88,7 +86,7 @@ def heart_prediction_page():
         ]
         # Convert input data to a NumPy array and scale it
         input_data_asarray = np.asarray(input_data).reshape(1, -1)
-        scaled_data, _ = scale_data(input_data_asarray)
+        scaled_data, _ = scale_data_heart(input_data_asarray)
 
         # Predict using the loaded model
         result = heart_model.predict(scaled_data)

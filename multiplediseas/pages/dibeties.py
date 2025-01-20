@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from processing.data_processing import scale_data
+from processing.diabitiespocessing import scale_data_dibaties
 from model.loadmodel import diabitie_model
 
 
@@ -33,7 +33,7 @@ def diabetes_prediction_page():
         input_data = np.asarray(input_data).reshape(1, -1)
 
         # Assuming scaler is predefined
-        scaled_data, _ = scale_data(input_data)
+        scaled_data, _ = scale_data_dibaties(input_data)
         result = diabitie_model.predict(scaled_data)
 
         if result[0] == 1:

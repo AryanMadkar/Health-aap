@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from processing.data_processing import scale_data
+from processing.lungcancerprocessing import scale_data_lung
 from model.loadmodel import lungcancer_model
 
 
@@ -78,7 +78,7 @@ def lung_cancer_prediction():
         input_data_array = np.asarray(input_data).reshape(1, -1)
 
         # Scale the input data
-        scaled_input_data, _ = scale_data(input_data_array)  # Renamed variable
+        scaled_input_data, _ = scale_data_lung(input_data_array)  # Renamed variable
 
         # Make prediction
         prediction = lungcancer_model.predict(scaled_input_data)
