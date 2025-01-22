@@ -4,12 +4,14 @@ from processing.diabitiespocessing import scale_data_dibaties
 from processing.heartprocessing import scale_data_heart
 from processing.lungcancerprocessing import scale_data_lung
 from processing.brestcancerprocessing import scale_data_brest
+from processing.liverprocessing import scale_data_liver
 from model.loadmodel import (
     diabitie_model,
     heart_model,
     lungcancer_model,
     brest_cancer_model,
     insurancemodel,
+    livermodel,
 )
 
 app = Flask(__name__)
@@ -150,6 +152,35 @@ def insurance():
     inputarray = np.asarray(input_data).reshape(1, -1)
     prediction = insurancemodel.predict(inputarray)
     return {"prediction": prediction[0]}
+
+
+@app.route("/liver", methods=["POST"])
+def liver():
+    data = request.get_json()
+    input_data = [
+        [
+            data["Age"],
+            data["Gender"],
+            data["BMI"],
+            data["AlcoholConsumption"],
+            data["Smoking"],
+            data["GeneticRisk"],
+            data["PhysicalActivity"],
+            data["Diabetes"],
+            data["Hypertension"],
+            data["LiverFunctionTest"],
+        ]
+    ]
+    inputarray = np.asarray(input_data).reshape(1, -1)
+    scaled_data, _ = scale_data_liver(inputarray)
+    prediction = livermodel.predict(scaled_data)
+    return {
+        "prediction": (
+            "Yes, you are likely to have liver problems."
+            if prediction[0] == 1
+            else "No, you are unlikely to have liver problems."
+        )
+    }
 
 
 if __name__ == "__main__":
