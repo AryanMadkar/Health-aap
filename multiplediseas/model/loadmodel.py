@@ -6,12 +6,24 @@ def load_model(filepath):
         return pickle.load(f)
 
 
-diabitie_model = load_model("multiplediseas/model/diabitese.sav")
+diabitie_model = load_model(
+    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/diabitese.sav"
+)
 
-heart_model = load_model("multiplediseas/model/heart_deseas.sav")
+heart_model = load_model(
+    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/heart_deseas.sav"
+)
 
-brest_cancer_model = load_model("multiplediseas/model/brestcaner.sav")
-lungcancer_model = load_model("multiplediseas/model/lung_cance.sav")
+brest_cancer_model = load_model(
+    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/brestcaner.sav"
+)
+lungcancer_model = load_model(
+    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/lung_cance.sav"
+)
 
-insurancemodel = load_model("multiplediseas/model/insurance_model.pkl")
-livermodel = load_model("multiplediseas/model/liver.sav")
+insurancemodel = load_model(
+    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/insurance_model.pkl"
+)
+livermodel = load_model(
+    "C:/Users/aryan/OneDrive/Desktop/health_app/multiplediseas/model/liver.sav"
+)

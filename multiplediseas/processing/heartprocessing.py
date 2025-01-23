@@ -1,7 +1,9 @@
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
-dh = pd.read_csv("heartdisies/heart_disease_data.csv")
+dh = pd.read_csv(
+    "C:/Users/aryan/OneDrive/Desktop/health_app/heartdisies/heart_disease_data.csv"
+)
 x = dh.drop(columns="target", axis=1)
 
 
