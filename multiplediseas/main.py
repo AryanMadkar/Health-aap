@@ -1,5 +1,6 @@
 from flask import Flask, request
 import numpy as np
+
 from processing.diabitiespocessing import scale_data_dibaties
 from processing.heartprocessing import scale_data_heart
 from processing.lungcancerprocessing import scale_data_lung
@@ -25,15 +26,18 @@ def welcome():
 @app.route("/diabetes", methods=["POST"])
 def diabetes():
     data = request.get_json()
-    pregnancies = data["pregnancies"]
-    glucose = data["glucose"]
-    bp = data["bp"]
-    skin_thickness = data["skin_thickness"]
-    insulin = data["insulin"]
-    bmi = data["bmi"]
-    dpf = data["dpf"]
-    age = data["age"]
-    input_data = [[pregnancies, glucose, bp, skin_thickness, insulin, bmi, dpf, age]]
+    input_data = [
+        [
+            data["pregnancies"],
+            data["glucose"],
+            data["bp"],
+            data["skin_thickness"],
+            data["insulin"],
+            data["bmi"],
+            data["dpf"],
+            data["age"],
+        ]
+    ]
     inputarray = np.asarray(input_data).reshape(1, -1)
     scaled_data, _ = scale_data_dibaties(inputarray)
     prediction = diabitie_model.predict(scaled_data)
@@ -184,4 +188,5 @@ def liver():
 
 
 if __name__ == "__main__":
+
     app.run(debug=True, port=5000)
