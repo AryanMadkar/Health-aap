@@ -1,12 +1,32 @@
+import * as dotenv from "dotenv";
+
+dotenv.config();
 import express from "express";
 import cors from "cors";
 import connect from "./db/dbconnect.js";
 import router from "./routes/userroutes.js";
+import cookieparser from "cookie-parser";
+
 const app = express();
 
 // Middleware
-app.use(express.json());
-app.use(cors());
+app.use(
+  express.json({
+    limit: "100mb",
+    extended: true,
+  })
+);
+app.use(
+  cors({
+    credentials: true,
+  })
+);
+
+// Cookie Parser middleware
+
+app.use(cookieparser(
+  
+));
 
 // Routes
 app.use("/health/v1", router);

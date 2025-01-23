@@ -24,14 +24,12 @@ const userScheama = new mongoose.Schema({
   medical_history: [
     {
       disease: {
-        type: String,
+        type: mongoose.Schema.ObjectId,
+        ref: "Disease",
       },
       predictionDate: {
         type: Date,
         default: Date.now,
-      },
-      predictionDetails: {
-        type: mongoose.Schema.Types.Mixed, // Allows storing flexible data about predictions
       },
     },
   ],
