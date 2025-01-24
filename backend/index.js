@@ -6,6 +6,7 @@ import cors from "cors";
 import connect from "./db/dbconnect.js";
 import router from "./routes/userroutes.js";
 import cookieparser from "cookie-parser";
+import router2 from "./routes/processroutes.js";
 
 const app = express();
 
@@ -24,13 +25,11 @@ app.use(
 
 // Cookie Parser middleware
 
-app.use(cookieparser(
-  
-));
+app.use(cookieparser());
 
 // Routes
 app.use("/health/v1", router);
-
+app.use("/health/v1", router2);
 // Start server function
 const server = async () => {
   try {

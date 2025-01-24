@@ -21,18 +21,6 @@ const userScheama = new mongoose.Schema({
     minlength: 8,
     maxlength: 100,
   },
-  medical_history: [
-    {
-      disease: {
-        type: mongoose.Schema.ObjectId,
-        ref: "Disease",
-      },
-      predictionDate: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
   createdAt: {
     type: Date,
     default: Date.now,

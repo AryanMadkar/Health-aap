@@ -97,4 +97,8 @@ const getuser = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-export { userRegister, userLogin,getuser };
+
+const logout = (req, res) => {
+  res.clearCookie("token").json({ message: "Logged out successfully" });
+};
+export { userRegister, userLogin, getuser,logout };

@@ -6,7 +6,7 @@ const heartschema = new mongoose.Schema({
     required: true,
   },
   sex: {
-    type: String,
+    type: Number,
     required: true,
   },
   cp: {
@@ -54,7 +54,7 @@ const heartschema = new mongoose.Schema({
     required: true,
   },
   target: {
-    type: Number,
+    type: String,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
