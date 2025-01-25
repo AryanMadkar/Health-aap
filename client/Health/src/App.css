@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 * {
   margin: 0;
   padding: 0;
@@ -7,4 +9,42 @@ body {
   font-family: "poppins", sans-serif;
   background: #000;
   color: white;
+}
+
+.shero li {
+  list-style: none;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  border: 2px solid white;
+  padding: 7px;
+  font-weight: 700;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  transition: bottom 0.3s ease;
+  overflow: hidden;
+}
+
+.shero li::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+  left: 0;
+  bottom: -100%;
+  transition: bottom 3s ease;
+  border-radius: 5px;
+  mix-blend-mode: difference;
+  opacity: 0;
+  z-index: -10;
+  color: #000;
+}
+
+.shero li:hover::after {
+  bottom: 0;
+  opacity: 1;
+  transition: bottom 0.5s ease;
+  color: #000;
+  border-radius: 12px;
 }
