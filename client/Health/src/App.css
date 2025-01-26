@@ -7,8 +7,8 @@
 
 body {
   font-family: "poppins", sans-serif;
-  background: #fefcfd;
-  color: black;
+  background: black;
+  color: white;
 }
 
 .shero li {
@@ -54,7 +54,13 @@ body {
 }
 
 .orangebox {
-  background-color: orangered;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
   padding: 2rem;
   border-radius: 50%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -66,11 +72,17 @@ body {
   animation-direction: alternate;
 }
 .orangebox3 {
-  background-color: orangered;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
   padding: 2rem;
   border-radius: 50%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  filter: blur(20px);
+  filter: blur(30px);
   animation-name: movela2;
   animation-duration: 4s;
   animation-timing-function: ease-in-out;
@@ -78,16 +90,69 @@ body {
   animation-direction: alternate;
 }
 .orangebox2 {
-  background-color: orangered;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
   padding: 2rem;
   border-radius: 50%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-  filter: blur(20px);
+  filter: blur(30px);
   animation-name: movela;
   animation-duration: 3s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+.line1 {
+  background: white;
+}
+
+.moving-text {
+  background-color: black;
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+  color: white;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  overflow-x: auto;
+}
+.moving-text::-webkit-scrollbar {
+  display: none;
+}
+.gola {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  background-color: orangered;
+}
+.con {
+  white-space: nowrap;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  animation-name: flow;
+  animation-duration: 12s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-fill-mode: forwards;
+ 
+}
+.moving-text h1 {
+  font-size: 7vw;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-family: "Poppins", sans-serif;
+  display: inline-block;
+  font-weight: 900;
 }
 
 @keyframes movela {
@@ -105,5 +170,14 @@ body {
   }
   to {
     transform: translate(0%, 10%);
+  }
+}
+
+@keyframes flow {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }

@@ -10,7 +10,7 @@ const Home1 = () => {
       <h1 className="w-[20rem]  text-start font-bold text-[7.5vw] w-fll absolute right-66 leading-none">
         HEALTH IS THE  GREATEST WEALTH
       </h1>
-      <div className="w-[97vw] h-[2px] rounded-b-full bg-black absolute bottom-0"></div>
+      <div className="w-[97vw] h-[2px] rounded-b-full line1 absolute bottom-0"></div>
     </div>
   );
 };
