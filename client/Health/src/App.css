@@ -7,15 +7,14 @@
 
 body {
   font-family: "poppins", sans-serif;
-  background: #000;
-  color: white;
+  background: #fefcfd;
+  color: black;
 }
 
 .shero li {
   list-style: none;
   margin-bottom: 10px;
   margin-right: 10px;
-  border: 2px solid white;
   padding: 7px;
   font-weight: 700;
   border-radius: 15px;
@@ -47,4 +46,64 @@ body {
   transition: bottom 0.5s ease;
   color: #000;
   border-radius: 12px;
+}
+
+.vide {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.orangebox {
+  background-color: orangered;
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(20px);
+  animation-name: movela2;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.orangebox3 {
+  background-color: orangered;
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(20px);
+  animation-name: movela2;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+.orangebox2 {
+  background-color: orangered;
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(20px);
+  animation-name: movela;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes movela {
+  from {
+    transform: translate(23%, -3%);
+  }
+  to {
+    transform: translate(20%, 10%);
+  }
+}
+
+@keyframes movela2 {
+  from {
+    transform: translate(-23%, -3%);
+  }
+  to {
+    transform: translate(0%, 10%);
+  }
 }

@@ -16,20 +16,18 @@ function App() {
   return (
     <div className="h-full w-full relative flex items-center justify-center gap-2 flex-col">
       <Navbar />
-      <div className="h-[90%] w-[95%] absolute top-[6rem] min-h-[85vh] bg-black border-2 rounded-2xl ">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<Aboutus />} />
-          <Route path="/contact" element={<Contactpage />} />
-          <Route path="/dibetiese" element={<Dibetiese />} />
-          <Route path="/heart" element={<Heart />} />
-          <Route path="/lungcancer" element={<Lungcancer />} />
-          <Route path="/liver" element={<Liver />} />
-          <Route path="/brestcancer" element={<BreastCancer />} />
-          <Route path="/insurance" element={<Insurance />} />
-          <Route path="*" element={<Pagenotfound />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<Aboutus />} />
+        <Route path="/contact" element={<Contactpage />} />
+        <Route path="/dibetiese" element={<Dibetiese />} />
+        <Route path="/heart" element={<Heart />} />
+        <Route path="/lungcancer" element={<Lungcancer />} />
+        <Route path="/liver" element={<Liver />} />
+        <Route path="/brestcancer" element={<BreastCancer />} />
+        <Route path="/insurance" element={<Insurance />} />
+        <Route path="*" element={<Pagenotfound />} />
+      </Routes>
     </div>
   );
 }
