@@ -10,6 +10,117 @@ body {
   background: black;
   color: white;
 }
+.bigl {
+  margin-left: 2rem;
+  position: absolute;
+  top: 2%;
+  border: 2px solid white;
+  /* From https://css.glass */
+  background: rgba(22, 21, 21, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.9px);
+  -webkit-backdrop-filter: blur(6.9px);
+  border: 1px solid rgba(22, 21, 21, 0.3);
+  overflow: hidden;
+  height: 27rem;
+  border-radius: 30px;
+}
+.bigl2 {
+  /* From https://css.glass */
+  background: rgba(22, 21, 21, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.9px);
+  -webkit-backdrop-filter: blur(6.9px);
+  border: 1px solid rgba(22, 21, 21, 0.3);
+  margin-left: 2rem;
+  position: absolute;
+  top: 22%;
+  overflow: hidden;
+  height: 27rem;
+  border-radius: 30px;
+}
+.hib {
+  background: #2bc0e4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #eaecc6,
+    #2bc0e4
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #eaecc6, #2bc0e4);
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(20px);
+  animation-name: movela2;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.hib2 {
+  background: #2bc0e4; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #eaecc6,
+    #2bc0e4
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #eaecc6, #2bc0e4);
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(20px);
+  animation-name: movela;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.hib3 {
+  background: hsla(10, 82%, 65%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(10, 82%, 65%, 1) 0%,
+    hsla(290, 79%, 13%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(10, 82%, 65%, 1) 0%,
+    hsla(290, 79%, 13%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(10, 82%, 65%, 1) 0%,
+    hsla(290, 79%, 13%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#EF745C", endColorstr="#34073D", GradientType=1 );
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(20px);
+  animation-name: movela;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.niga {
+  /* From https://css.glass */
+  background: rgba(22, 21, 21, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.9px);
+  -webkit-backdrop-filter: blur(6.9px);
+  border: 1px solid rgba(22, 21, 21, 0.3);
+}
+.pad {
+  padding: 1rem;
+}
 
 .shero li {
   list-style: none;
@@ -89,6 +200,28 @@ body {
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
+.orangebox4 {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  padding: 2rem;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  filter: blur(30px);
+  animation-name: movela;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.bruck {
+  background: white;
+}
 .orangebox2 {
   background: rgb(131, 58, 180);
   background: linear-gradient(
@@ -126,10 +259,31 @@ body {
   display: none;
 }
 .gola {
+  filter: blur(10px);
   height: 7rem;
   width: 7rem;
   border-radius: 50%;
-  background-color: orangered;
+  background: hsla(49, 100%, 48%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(49, 100%, 48%, 1) 0%,
+    hsla(226, 69%, 30%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(49, 100%, 48%, 1) 0%,
+    hsla(226, 69%, 30%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(49, 100%, 48%, 1) 0%,
+    hsla(226, 69%, 30%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#F5C900", endColorstr="#183182", GradientType=1 );
 }
 .con {
   white-space: nowrap;
@@ -144,8 +298,8 @@ body {
   animation-iteration-count: infinite;
   animation-direction: alternate;
   animation-fill-mode: forwards;
- 
 }
+
 .moving-text h1 {
   font-size: 7vw;
   margin-top: 1rem;
@@ -180,4 +334,52 @@ body {
   to {
     transform: translateX(-100%);
   }
+}
+.home4 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.nitro {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+}
+
+.nitro:hover {
+  color: aqua;
+  transition: color 0.3s linear;
+  text-shadow: 2px 2px 5px #000;
+  transform: scale(1.02);
+  filter: drop-shadow(0 0 5px #000);
+  opacity: 0.8;
+}
+.nitro::after {
+  content: "";
+  position: absolute;
+  height: 97%;
+  width: 100%;
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  left: 0;
+  bottom: 100%;
+  transition: bottom 7s linear;
+  border-radius: 5px;
+  mix-blend-mode: difference;
+  opacity: 0;
+  z-index: -10;
+  color: #000;
+}
+.nitro:hover::after {
+  bottom: 0;
+  opacity: 1;
+  transition: bottom 0.7s ease-out;
+  color: #000;
+  border-radius: 12px;
 }

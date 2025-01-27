@@ -12,6 +12,8 @@ import BreastCancer from "./pages/BreastCancer";
 import Insurance from "./pages/Insurance";
 import Navbar from "./components/Navbar";
 import Pagenotfound from "./components/Pagenotfound";
+import Footer from "./components/Footer";
+import Predictions from "./pages/Predictions";
 function App() {
   return (
     <div className="h-full w-full relative flex items-center justify-center gap-2 flex-col">
@@ -20,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<Aboutus />} />
         <Route path="/contact" element={<Contactpage />} />
+        <Route path="/prediction" element={<Predictions />} />
         <Route path="/dibetiese" element={<Dibetiese />} />
         <Route path="/heart" element={<Heart />} />
         <Route path="/lungcancer" element={<Lungcancer />} />
@@ -28,6 +31,7 @@ function App() {
         <Route path="/insurance" element={<Insurance />} />
         <Route path="*" element={<Pagenotfound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
