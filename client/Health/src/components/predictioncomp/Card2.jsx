@@ -7,6 +7,7 @@ const Card2 = () => {
       <div className="card bigl2 flex flex-col items-center justify-start card-compact bg-base-100 w-96 shadow-xl">
         <figure>
           <img
+            className="baner1"
             src="https://media.istockphoto.com/id/1359314170/photo/heart-attack-and-heart-disease-3d-illustration.jpg?s=612x612&w=0&k=20&c=K5Y-yzsfs7a7CyuAw-B222EMkT04iRmiEWzhIqF0U9E="
             alt="Shoes"
           />

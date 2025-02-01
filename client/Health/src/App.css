@@ -383,3 +383,39 @@ body {
   color: #000;
   border-radius: 12px;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d1e5ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#642bff, #ff22e6);
+  border-radius: 2px;
+}
+.seaborn{
+  margin-top: 2.4rem;
+
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 36px;
+  margin: 10px 0;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  letter-spacing: 2px;
+  letter-spacing: 2px;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #0162c8, #55e7fc, #ff72c0);
+}

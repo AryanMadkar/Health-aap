@@ -14,6 +14,7 @@ import Navbar from "./components/Navbar";
 import Pagenotfound from "./components/Pagenotfound";
 import Footer from "./components/Footer";
 import Predictions from "./pages/Predictions";
+
 function App() {
   return (
     <div className="h-full w-full relative flex items-center justify-center gap-2 flex-col">
