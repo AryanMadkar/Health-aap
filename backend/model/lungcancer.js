@@ -62,7 +62,7 @@ const lungcanceschema = new mongoose.Schema({
     required: true,
   },
   lung_cancer: {
-    type: Boolean,
+    type: String,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
