@@ -66,29 +66,33 @@ const lungprocessing = async (req, res) => {
       chest_pain: CHEST_PAIN,
       userId: req.user.id,
     });
-    const lungrecord = new lungcancermodel({
-      gender: GENDER === 1 ? "Male" : "Female",
-      age: AGE,
-      smoking: SMOKING === 2 ? True : false,
-      yellow_fingers: YELLOW_FINGERS === 2 ? True : false,
-      anxiety: ANXIETY === 2 ? True : false,
-      peer_pressure: PEER_PRESSURE === 2 ? True : false,
-      chronic_disease: CHRONIC_DISEASE === 2 ? True : false,
-      fatigue: FATIGUE === 2 ? True : false,
-      allergy: ALLERGY === 2 ? True : false,
-      wheezing: WHEEZING === 2 ? True : false,
-      alcohol_consuming: ALCOHOL_CONSUMING === 2 ? True : false,
-      coughing: COUGHING === 2 ? True : false,
-      shortness_of_breath: SHORTNESS_OF_BREATH === 2 ? True : false,
-      swallowing_difficulty: SWALLOWING_DIFFICULTY === 2 ? True : false,
-      chest_pain: CHEST_PAIN === 2 ? True : false,
-      lung_cancer: data.prediction,
-      user: req.user.id,
-    });
-    await lungrecord.save().then(() => {
-      console.log("User record saved successfully");
-      res.json({ prediction: data.prediction, record: lungrecord });
-    });
+    if (data) {
+      const lungrecord = new lungcancermodel({
+        gender: GENDER === 1 ? "Male" : "Female",
+        age: AGE,
+        smoking: SMOKING === 2 ? True : false,
+        yellow_fingers: YELLOW_FINGERS === 2 ? True : false,
+        anxiety: ANXIETY === 2 ? True : false,
+        peer_pressure: PEER_PRESSURE === 2 ? True : false,
+        chronic_disease: CHRONIC_DISEASE === 2 ? True : false,
+        fatigue: FATIGUE === 2 ? True : false,
+        allergy: ALLERGY === 2 ? True : false,
+        wheezing: WHEEZING === 2 ? True : false,
+        alcohol_consuming: ALCOHOL_CONSUMING === 2 ? True : false,
+        coughing: COUGHING === 2 ? True : false,
+        shortness_of_breath: SHORTNESS_OF_BREATH === 2 ? True : false,
+        swallowing_difficulty: SWALLOWING_DIFFICULTY === 2 ? True : false,
+        chest_pain: CHEST_PAIN === 2 ? True : false,
+        lung_cancer: data.prediction,
+        user: req.user.id,
+      });
+      await lungrecord.save().then(() => {
+        console.log("User record saved successfully");
+        res.json({ prediction: data.prediction, record: lungrecord });
+      });
+    } else {
+      res.status(400).json({ message: "Error processing request" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

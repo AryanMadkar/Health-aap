@@ -56,24 +56,27 @@ const liverprocessing = async (req, res) => {
         .status(500)
         .json({ message: "Failed to predict liver function test" });
     }
-
-    const liverrecord = new livermodel({
-      user: user._id,
-      Age,
-      Gender,
-      BMI,
-      AlcoholConsumption,
-      Smoking,
-      GeneticRisk,
-      PhysicalActivity,
-      Diabetes,
-      Hypertension,
-      LiverFunctionTest,
-      prediction: data.prediction,
-    });
-    await liverrecord.save();
-    // Send back prediction and saved record
-    res.json({ prediction: data.prediction, record: liverrecord });
+    if (data) {
+      const liverrecord = new livermodel({
+        user: user._id,
+        Age,
+        Gender,
+        BMI,
+        AlcoholConsumption,
+        Smoking,
+        GeneticRisk,
+        PhysicalActivity,
+        Diabetes,
+        Hypertension,
+        LiverFunctionTest,
+        prediction: data.prediction,
+      });
+      await liverrecord.save();
+      // Send back prediction and saved record
+      res.json({ prediction: data.prediction, record: liverrecord });
+    } else {
+      res.status(500).json({ message: "Failed to process liver data" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

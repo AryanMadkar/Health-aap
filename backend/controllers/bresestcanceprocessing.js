@@ -35,17 +35,25 @@ const brestcancerprocessing = async (req, res) => {
       mean_area,
       mean_smoothness,
     });
-    const brestcancerrecord = new brestcancermodel({
-      mean_radius,
-      mean_texture,
-      mean_perimeter,
-      mean_area,
-      mean_smoothness,
-      diagnosis: data.diagnosis,
-      user: req.user.id,
-    });
-    await brestcancerrecord.save();
-    res.json({ prediction: data.prediction, record: brestcancerrecord });
+    if (data) {
+      const brestcancerrecord = new brestcancermodel({
+        mean_radius,
+        mean_texture,
+        mean_perimeter,
+        mean_area,
+        mean_smoothness,
+        diagnosis: data.diagnosis,
+        user: req.user.id,
+      });
+      await brestcancerrecord.save();
+      res.json({
+        message: "data saved",
+        prediction: data.prediction,
+        record: brestcancerrecord,
+      });
+    } else {
+      res.status(400).json({ message: "Error processing request" });
+    }
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -47,27 +47,30 @@ const dibetiesprocessing = async (req, res) => {
       dpf: DiabetesPedigreeFunction,
       age: Age,
     });
+    if (data) {
+      // Save data to the database
+      const diabetesRecord = new dib5etesmodel({
+        Pregnancies,
+        Glucose,
+        BloodPressure,
+        SkinThickness,
+        Insulin,
+        BMI,
+        DiabetesPedigreeFunction,
+        Age,
+        Outcome: data.prediction,
+        user: req.user.id,
+      });
+      await diabetesRecord.save().then(() => {
+        console.log("User record saved successfully");
+      });
+      // Respond with the prediction and updated user data
 
-    // Save data to the database
-    const diabetesRecord = new dib5etesmodel({
-      Pregnancies,
-      Glucose,
-      BloodPressure,
-      SkinThickness,
-      Insulin,
-      BMI,
-      DiabetesPedigreeFunction,
-      Age,
-      Outcome: data.prediction,
-      user: req.user.id,
-    });
-    await diabetesRecord.save().then(() => {
-      console.log("User record saved successfully");
-    });
-    // Respond with the prediction and updated user data
-
-    // Respond with prediction and saved record
-    res.json({ prediction: data.prediction, record: diabetesRecord });
+      // Respond with prediction and saved record
+      res.json({ prediction: data.prediction, record: diabetesRecord });
+    } else {
+      res.status(400).json({ message: "Invalid API response" });
+    }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

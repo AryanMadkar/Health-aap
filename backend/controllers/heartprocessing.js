@@ -65,29 +65,32 @@ const heartprocessing = async (req, res) => {
       ca,
       thal,
     });
-
-    // Save prediction and user data in MongoDB
-    const heartRecord = new heartmodel({
-      age,
-      sex,
-      cp,
-      trestbps,
-      chol,
-      fbs,
-      restecg,
-      thalach,
-      exang,
-      oldpeak,
-      slope,
-      ca,
-      thal,
-      target: data.prediction,
-      user: req.user.id,
-    });
-    await heartRecord.save();
+    if (data) {
+      // Save prediction and user data in MongoDB
+      const heartRecord = new heartmodel({
+        age,
+        sex,
+        cp,
+        trestbps,
+        chol,
+        fbs,
+        restecg,
+        thalach,
+        exang,
+        oldpeak,
+        slope,
+        ca,
+        thal,
+        target: data.prediction,
+        user: req.user.id,
+      });
+      await heartRecord.save();
+      res.json({ prediction: data.prediction, record: heartRecord });
+    } else {
+      res.status(500).json({ message: "Error processing request" });
+    }
 
     // Respond with prediction and saved record
-    res.json({ prediction: data.prediction, record: heartRecord });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

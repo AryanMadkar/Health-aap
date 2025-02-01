@@ -2,7 +2,7 @@ from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
 dh = pd.read_csv(
-    "C:/Users/aryan/OneDrive/Desktop/health_app/lungcancer/lungcancerdata.csv"
+    "multiplediseas/processing/lungcancerdata.csv"
 )
 x = dh.drop(columns="LUNG_CANCER", axis=1)
 
