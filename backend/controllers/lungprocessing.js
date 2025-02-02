@@ -34,7 +34,7 @@ const lungprocessing = async (req, res) => {
 
     // Send data to Flask API
     const { data } = await axios.post(`${baseurl}/lungcancer`, {
-      gender, // Fixed incorrect key
+      gender,
       age,
       smoking,
       yellow_fingers,
@@ -44,7 +44,7 @@ const lungprocessing = async (req, res) => {
       fatigue,
       allergy,
       wheezing,
-      alcohol: alcohol_consuming, // Match API's expected key
+      alcohol: alcohol_consuming,
       coughing,
       shortness_of_breath,
       swallowing_difficulty,
@@ -53,6 +53,7 @@ const lungprocessing = async (req, res) => {
     });
 
     if (data) {
+      // Save in the lung cancer model
       const lungrecord = new lungcancermodel({
         gender: gender === 1 ? "male" : "female",
         age,
@@ -74,7 +75,18 @@ const lungprocessing = async (req, res) => {
       });
 
       await lungrecord.save();
-      console.log("User record saved successfully");
+
+      // ✅ Update User's Medical Reports
+      user.medical_reports.push({
+        disease: `Lung Cancer + ${new Date()}`,
+        prediction: data.prediction,
+        date: new Date(),
+      });
+
+      await user.save();
+
+      console.log("User record and medical history updated successfully");
+
       return res.json({ prediction: data.prediction, record: lungrecord });
     } else {
       return res.status(400).json({ message: "Error processing request" });

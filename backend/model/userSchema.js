@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const userScheama = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -21,12 +21,18 @@ const userScheama = new mongoose.Schema({
     minlength: 8,
     maxlength: 100,
   },
+  medical_reports: [
+    {
+      disease: { type: String }, // e.g., "Lung Cancer"
+      prediction: { type: String }, // Prediction result
+      date: { type: Date }, // When the prediction was made
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
 
-const usermodel = mongoose.model("User", userScheama);
-
+const usermodel = mongoose.model("User", userSchema);
 export default usermodel;

@@ -64,6 +64,11 @@ const dibetiesprocessing = async (req, res) => {
       await diabetesRecord.save().then(() => {
         console.log("User record saved successfully");
       });
+      user.medical_reports.push({
+        disease: `Dibetise problem + ${new Date()}`,
+        prediction: data.prediction,
+        date: new Date(),
+      });
       // Respond with the prediction and updated user data
 
       // Respond with prediction and saved record

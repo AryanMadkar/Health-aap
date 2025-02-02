@@ -85,6 +85,11 @@ const heartprocessing = async (req, res) => {
         user: req.user.id,
       });
       await heartRecord.save();
+      user.medical_reports.push({
+        disease: `Heart problem + ${new Date()}`,
+        prediction: data.prediction,
+        date: new Date(),
+      });
       res.json({ prediction: data.prediction, record: heartRecord });
     } else {
       res.status(500).json({ message: "Error processing request" });

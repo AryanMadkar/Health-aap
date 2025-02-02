@@ -59,6 +59,11 @@ const liverprocessing = async (req, res) => {
         Diagnosis: data.prediction,
       });
       await liverrecord.save();
+      user.medical_reports.push({
+        disease: `Liver problem + ${new Date()}`,
+        prediction: data.prediction,
+        date: new Date(),
+      });
       // Send back prediction and saved record
       res.json({ prediction: data.prediction, record: liverrecord });
     } else {
