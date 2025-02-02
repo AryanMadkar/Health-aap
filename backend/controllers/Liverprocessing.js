@@ -25,21 +25,8 @@ const liverprocessing = async (req, res) => {
       Hypertension,
       LiverFunctionTest,
     } = req.body;
-    if (
-      !Age ||
-      !Gender ||
-      !BMI ||
-      !AlcoholConsumption ||
-      !Smoking ||
-      !GeneticRisk ||
-      !PhysicalActivity ||
-      !Diabetes ||
-      !Hypertension ||
-      !LiverFunctionTest
-    ) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
-    const data = await axios.post(`${baseurl}/liver`, {
+
+    const { data } = await axios.post(`${baseurl}/liver`, {
       Age,
       Gender,
       BMI,
@@ -51,7 +38,7 @@ const liverprocessing = async (req, res) => {
       Hypertension,
       LiverFunctionTest,
     });
-    if (!data.data.prediction) {
+    if (!data.prediction) {
       return res
         .status(500)
         .json({ message: "Failed to predict liver function test" });
@@ -60,7 +47,7 @@ const liverprocessing = async (req, res) => {
       const liverrecord = new livermodel({
         user: user._id,
         Age,
-        Gender,
+        Gender: Gender === 1 ? "male" : "female",
         BMI,
         AlcoholConsumption,
         Smoking,
@@ -69,7 +56,7 @@ const liverprocessing = async (req, res) => {
         Diabetes,
         Hypertension,
         LiverFunctionTest,
-        prediction: data.prediction,
+        Diagnosis: data.prediction,
       });
       await liverrecord.save();
       // Send back prediction and saved record

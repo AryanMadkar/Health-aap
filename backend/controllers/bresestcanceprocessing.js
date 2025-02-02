@@ -42,7 +42,7 @@ const brestcancerprocessing = async (req, res) => {
         mean_perimeter,
         mean_area,
         mean_smoothness,
-        diagnosis: data.diagnosis,
+        diagnosis: data.prediction, 
         user: req.user.id,
       });
       await brestcancerrecord.save();

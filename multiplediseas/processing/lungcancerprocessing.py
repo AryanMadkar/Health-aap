@@ -1,9 +1,9 @@
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
 
-dh = pd.read_csv(
-    "multiplediseas/processing/lungcancerdata.csv"
-)
+dh = pd.read_csv("multiplediseas/processing/lungcancerdata.csv")
+dh["GENDER"] = dh["GENDER"].map({"M": 1, "F": 0})
+
 x = dh.drop(columns="LUNG_CANCER", axis=1)
 
 

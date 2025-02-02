@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import axios from "axios";
 import usermodel from "../model/userSchema.js";
 import lungcancermodel from "../model/lungcancer.js";
@@ -11,90 +12,75 @@ const lungprocessing = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+
     // Extract and validate fields from the request body
     const {
-      GENDER,
-      AGE,
-      SMOKING,
-      YELLOW_FINGERS,
-      ANXIETY,
-      PEER_PRESSURE,
-      CHRONIC_DISEASE,
-      FATIGUE,
-      ALLERGY,
-      WHEEZING,
-      ALCOHOL_CONSUMING,
-      COUGHING,
-      SHORTNESS_OF_BREATH,
-      SWALLOWING_DIFFICULTY,
-      CHEST_PAIN,
+      gender,
+      age,
+      smoking,
+      yellow_fingers,
+      anxiety,
+      peer_pressure,
+      chronic_disease,
+      fatigue,
+      allergy,
+      wheezing,
+      alcohol_consuming,
+      coughing,
+      shortness_of_breath,
+      swallowing_difficulty,
+      chest_pain,
     } = req.body;
-    if (
-      !GENDER ||
-      !AGE ||
-      !SMOKING ||
-      !YELLOW_FINGERS ||
-      !ANXIETY ||
-      !PEER_PRESSURE ||
-      !CHRONIC_DISEASE ||
-      !FATIGUE ||
-      !ALLERGY ||
-      !WHEEZING ||
-      !ALCOHOL_CONSUMING ||
-      !COUGHING ||
-      !SHORTNESS_OF_BREATH ||
-      !SWALLOWING_DIFFICULTY ||
-      !CHEST_PAIN
-    ) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
+
+    // Send data to Flask API
     const { data } = await axios.post(`${baseurl}/lungcancer`, {
-      gende: GENDER,
-      age: AGE,
-      smoking: SMOKING,
-      yellow_fingers: YELLOW_FINGERS,
-      anxiety: ANXIETY,
-      peer_pressure: PEER_PRESSURE,
-      chronic_disease: CHRONIC_DISEASE,
-      fatigue: FATIGUE,
-      allergy: ALLERGY,
-      wheezing: WHEEZING,
-      alcohol_consuming: ALCOHOL_CONSUMING,
-      coughing: COUGHING,
-      shortness_of_breath: SHORTNESS_OF_BREATH,
-      swallowing_difficulty: SWALLOWING_DIFFICULTY,
-      chest_pain: CHEST_PAIN,
+      gender, // Fixed incorrect key
+      age,
+      smoking,
+      yellow_fingers,
+      anxiety,
+      peer_pressure,
+      chronic_disease,
+      fatigue,
+      allergy,
+      wheezing,
+      alcohol: alcohol_consuming, // Match API's expected key
+      coughing,
+      shortness_of_breath,
+      swallowing_difficulty,
+      chest_pain,
       userId: req.user.id,
     });
+
     if (data) {
       const lungrecord = new lungcancermodel({
-        gender: GENDER === 1 ? "Male" : "Female",
-        age: AGE,
-        smoking: SMOKING === 2 ? True : false,
-        yellow_fingers: YELLOW_FINGERS === 2 ? True : false,
-        anxiety: ANXIETY === 2 ? True : false,
-        peer_pressure: PEER_PRESSURE === 2 ? True : false,
-        chronic_disease: CHRONIC_DISEASE === 2 ? True : false,
-        fatigue: FATIGUE === 2 ? True : false,
-        allergy: ALLERGY === 2 ? True : false,
-        wheezing: WHEEZING === 2 ? True : false,
-        alcohol_consuming: ALCOHOL_CONSUMING === 2 ? True : false,
-        coughing: COUGHING === 2 ? True : false,
-        shortness_of_breath: SHORTNESS_OF_BREATH === 2 ? True : false,
-        swallowing_difficulty: SWALLOWING_DIFFICULTY === 2 ? True : false,
-        chest_pain: CHEST_PAIN === 2 ? True : false,
+        gender: gender === 1 ? "male" : "female",
+        age,
+        smoking: Boolean(smoking),
+        yellow_fingers: Boolean(yellow_fingers),
+        anxiety: Boolean(anxiety),
+        peer_pressure: Boolean(peer_pressure),
+        chronic_disease: Boolean(chronic_disease),
+        fatigue: Boolean(fatigue),
+        allergy: Boolean(allergy),
+        wheezing: Boolean(wheezing),
+        alcohol_consuming: Boolean(alcohol_consuming),
+        coughing: Boolean(coughing),
+        shortness_of_breath: Boolean(shortness_of_breath),
+        swallowing_difficulty: Boolean(swallowing_difficulty),
+        chest_pain: Boolean(chest_pain),
         lung_cancer: data.prediction,
         user: req.user.id,
       });
-      await lungrecord.save().then(() => {
-        console.log("User record saved successfully");
-        res.json({ prediction: data.prediction, record: lungrecord });
-      });
+
+      await lungrecord.save();
+      console.log("User record saved successfully");
+      return res.json({ prediction: data.prediction, record: lungrecord });
     } else {
-      res.status(400).json({ message: "Error processing request" });
+      return res.status(400).json({ message: "Error processing request" });
     }
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
