@@ -167,7 +167,7 @@ Implementing user health history tracking
 
 Contributors
 
-Your Name (your.email@example.com)
+Aryan Madkar (aryanmadkar70@gmail.com)
 
 License
 
