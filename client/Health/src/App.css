@@ -208,6 +208,7 @@ body {
     rgba(253, 29, 29, 1) 50%,
     rgba(252, 176, 69, 1) 100%
   );
+  
   padding: 2rem;
   border-radius: 50%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
@@ -262,6 +263,7 @@ body {
   filter: blur(10px);
   height: 7rem;
   width: 7rem;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   border-radius: 50%;
   background: hsla(49, 100%, 48%, 1);
 
@@ -355,6 +357,30 @@ body {
   filter: drop-shadow(0 0 5px #000);
   opacity: 0.8;
 }
+.bounce {
+  animation-name: bounce;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10rem);
+  }
+}
+.beon {
+  background: rgb(131, 58, 180);
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+}
 .nitro::after {
   content: "";
   position: absolute;
@@ -396,9 +422,8 @@ body {
   background: linear-gradient(#642bff, #ff22e6);
   border-radius: 2px;
 }
-.seaborn{
+.seaborn {
   margin-top: 2.4rem;
-
 }
 
 .btn {
