@@ -14,7 +14,7 @@ import {
 
 const Work = () => {
   return (
-    <div className="min-h-[100vh] w-full flex items-center justify-center bg-neutral-900 divide-neutral-900">
+    <div className="min-h-[100vh] w-full flex items-center justify-center bg-black divide-black">
       <div className="mx-auto w-[78vw] h-full darkblue rounded-4xl overflow-hidden">
         <ClippathLinks />
       </div>
@@ -24,18 +24,18 @@ const Work = () => {
 
 const ClippathLinks = () => {
   return (
-    <div className="border-4 border-neutral-900 text-black divide-y divide-neutral-900">
-      <div className="grid grid-cols-2 divide-x divide-neutral-900">
+    <div className="border-4 border-black text-black divide-y divide-black">
+      <div className="grid grid-cols-2 divide-x divide-black">
         <LinkBox Icon={SiGoogle} href="#" />
         <LinkBox Icon={SiShopify} href="#" />
       </div>
-      <div className="grid grid-cols-4 divide-x divide-neutral-900">
+      <div className="grid grid-cols-4 divide-x divide-black">
         <LinkBox Icon={SiSoundcloud} href="#" />
         <LinkBox Icon={SiAdobe} href="#" />
         <LinkBox Icon={SiFacebook} href="#" />
         <LinkBox Icon={SiApple} href="#" />
       </div>
-      <div className="grid grid-cols-3 divide-x divide-neutral-900">
+      <div className="grid grid-cols-3 divide-x divide-black">
         <LinkBox Icon={SiInstagram} href="#" />
         <LinkBox Icon={SiSpotify} href="#" />
         <LinkBox Icon={SiLinkedin} href="#" />
@@ -72,7 +72,7 @@ const LinkBox = ({ Icon, href }) => {
         style={{
           clipPath: "polygon(0 0, 100% 0%, 0 0, 0% 100%)", // Initial clip path
         }}
-        className="absolute inset-0 grid place-content-center bg-neutral-900"
+        className="absolute inset-0 grid place-content-center bg-black"
       >
         <Icon className="text-xl text-white sm:text-3xl md:text-4xl" />
       </motion.div>
