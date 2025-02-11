@@ -3,11 +3,24 @@ import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "motion/react";
 const Navbar = () => {
   return (
-    <div className="flex flex-row fixed top-0  w-full items-center justify-between p-2 ">
+    <div className="flex flex-row fixed top-0  w-[98vw] items-center justify-between p-2 ">
       <div>
-        <h1 className="cursor-pointer text-3xl font-bold">
+        <motion.h1
+          initial={{
+            y: 0,
+          }}
+          animate={{
+            opacity: 1,
+            y: 10,
+          }}
+          transition={{
+            duration: 0.6,
+            ease: "easeInOut",
+          }}
+          className="cursor-pointer opacity-0 text-3xl font-bold"
+        >
           The Growth Accelerator
-        </h1>
+        </motion.h1>
       </div>
       <div>
         <ul className="flex gap-2 flex-row">

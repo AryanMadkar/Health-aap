@@ -1,1 +1,1 @@
-streamlit run "C:\Users\aryan\OneDrive\Desktop\health_app\multiplediseas\index.py"
+streamlit run "F:\dektop241205\health_app\multiplediseas\index.py"

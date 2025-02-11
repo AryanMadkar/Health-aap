@@ -10,7 +10,7 @@ from processing.liverprocessing import scale_data_liver
 from model.loadmodel import (
     diabitie_model,
     heart_model,
-    lungcancer_model,
+    lungcancer_model, 
     brest_cancer_model,
     insurancemodel,
     livermodel,
