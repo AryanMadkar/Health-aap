@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Home from "./pages/Home/Home";
-import Highlights from "./pages/HIghlights/Highlights";
-import "./App.css";
-import Glance from "./pages/glance/Glance";
-import Footer from "./pages/Footer/Footer";
-import Approach from "./pages/Approach/Approach";
-import Work from "./work/Work";
+
 import { motion, useScroll } from "motion/react";
+import { Route,  Routes } from "react-router-dom";
+import Dibetiese from "./components/Dibetiese";
+import Lungcaner from "./components/Lungcaner";
+import Brestcancer from "./components/Brestcancer";
+import Heartdiseases from "./components/Heartdiseases";
+import Liver from "./components/Liver";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -27,7 +28,7 @@ function App() {
     default: {
       x: mouseposition.x - 16,
       y: mouseposition.y - 16,
-      mixBlendMode:"difference"
+      mixBlendMode: "difference",
     },
   };
   const [cursorvarient, setCursorvarient] = useState("default");
@@ -48,12 +49,14 @@ function App() {
           opacity: { ease: "linear" },
         }}
       ></motion.div>
-      <Home />
-      <Highlights />
-      <Glance />
-      <Work />
-      <Approach />
-      <Footer />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/dibeties" element={<Dibetiese/>} />
+        <Route exact path="/lungcancer" element={<Lungcaner />} />
+        <Route exact path="/brestcancer" element={<Brestcancer />} />
+        <Route exact path="/heart" element={<Heartdiseases />} />
+        <Route exact path="/liver" element={<Liver />} />
+      </Routes> 
     </div>
   );
 }

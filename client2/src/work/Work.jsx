@@ -1,5 +1,11 @@
 import React from "react";
 import { motion, useAnimate } from "motion/react";
+import { FaHeartbeat } from "react-icons/fa";
+import { FaLungsVirus } from "react-icons/fa6";
+import { GiLiver } from "react-icons/gi";
+import { FaDAndD } from "react-icons/fa";
+import { IoMdAnalytics } from "react-icons/io";
+
 import {
   SiAdobe,
   SiApple,
@@ -11,6 +17,7 @@ import {
   SiSpotify,
   SiInstagram,
 } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 const Work = () => {
   return (
@@ -26,13 +33,25 @@ const ClippathLinks = () => {
   return (
     <div className="border-4 border-black text-black divide-y divide-black">
       <div className="grid grid-cols-2 divide-x divide-black">
-        <LinkBox Icon={SiGoogle} href="#" />
-        <LinkBox Icon={SiShopify} href="#" />
+        <Link to={"/dibeties"}>
+          <LinkBox Icon={IoMdAnalytics} />
+        </Link>
+
+        <Link to={"/heart"}>
+          <LinkBox Icon={FaHeartbeat} />
+        </Link>
       </div>
       <div className="grid grid-cols-4 divide-x divide-black">
-        <LinkBox Icon={SiSoundcloud} href="#" />
-        <LinkBox Icon={SiAdobe} href="#" />
-        <LinkBox Icon={SiFacebook} href="#" />
+        <Link to={"/lungcancer"}>
+          {" "}
+          <LinkBox Icon={FaLungsVirus} />
+        </Link>
+        <Link to={"/liver"}>
+          <LinkBox Icon={GiLiver} />
+        </Link>
+        <Link to={"/brestcancer"}>
+          <LinkBox Icon={FaDAndD} />
+        </Link>
         <LinkBox Icon={SiApple} href="#" />
       </div>
       <div className="grid grid-cols-3 divide-x divide-black">

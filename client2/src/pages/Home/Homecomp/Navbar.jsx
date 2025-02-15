@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaLocationArrow } from "react-icons/fa";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div className="flex flex-row fixed top-0  w-[98vw] items-center justify-between p-2 ">
@@ -22,10 +23,15 @@ const Navbar = () => {
           The Growth Accelerator
         </motion.h1>
       </div>
-      <div>
-        <ul className="flex gap-2 flex-row">
+      {/* <div>
+        <ul className="flex gap-4 text-xl font-bold flex-row">
           <li>
-            <a>Home</a>
+            <button>
+              {" "}
+              <Link className="hover:scale-105 transition-all ease-linear duration-300 hover:underline cursor-pointer">
+                Dibetiese
+              </Link>
+            </button>
           </li>
           <li>
             <a>About</a>
@@ -37,7 +43,7 @@ const Navbar = () => {
             <a>Contact</a>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div>
         <motion.h1
           whileHover={{
