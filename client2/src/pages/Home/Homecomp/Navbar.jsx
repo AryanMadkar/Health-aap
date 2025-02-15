@@ -1,68 +1,79 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaLocationArrow } from "react-icons/fa";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+
 const Navbar = () => {
+  const navItems = [
+    "Dibeties",
+    "Heart",
+    "LungCancer",
+    "BrestCancer",
+    "Liver",
+  ];
+
   return (
-    <div className="flex flex-row fixed top-0  w-[98vw] items-center justify-between p-2 ">
+    <motion.div
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="flex flex-row fixed top-0 z-40 w-[98vw] items-center justify-between p-2"
+    >
       <div>
-        <motion.h1
-          initial={{
-            y: 0,
-          }}
-          animate={{
-            opacity: 1,
-            y: 10,
-          }}
-          transition={{
-            duration: 0.6,
-            ease: "easeInOut",
-          }}
-          className="cursor-pointer opacity-0 text-3xl font-bold"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
         >
-          The Growth Accelerator
-        </motion.h1>
+         <Link to={"/"}> <h1 className="cursor-pointer text-3xl font-bold">
+            The Growth Accelerator
+          </h1></Link>
+        </motion.div>
       </div>
-      {/* <div>
+      <div>
         <ul className="flex gap-4 text-xl font-bold flex-row">
-          <li>
-            <button>
-              {" "}
-              <Link className="hover:scale-105 transition-all ease-linear duration-300 hover:underline cursor-pointer">
-                Dibetiese
-              </Link>
-            </button>
-          </li>
-          <li>
-            <a>About</a>
-          </li>
-          <li>
-            <a>Services</a>
-          </li>
-          <li>
-            <a>Contact</a>
-          </li>
+          {navItems.map((item, index) => (
+            <motion.li
+              key={item}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.4,
+                delay: index * 0.1,
+                ease: "backOut",
+              }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link 
+                  className="hover:underline cursor-pointer block p-2"
+                  to={`/${item.toLowerCase()}`}
+                >
+                  {item}
+                </Link>
+              </motion.div>
+            </motion.li>
+          ))}
         </ul>
-      </div> */}
-      <div>
-        <motion.h1
-          whileHover={{
-            scale: 1.1,
-            color: "black",
-            background: "white",
-            borderColor: "black",
-          }}
-          whileTap={{ scale: 0.95 }}
-          transition={{
-            duration: 0.3,
-            ease: "anticipate",
-          }}
-          className="flex cursor-pointer font-semibold flex-row items-center border-2 p-2 rounded-2xl text-white justify-center gap-2"
-        >
-          Let's talk <FaLocationArrow />
-        </motion.h1>
       </div>
-    </div>
+      <Link to={"/register"}><motion.button
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        whileHover={{
+          scale: 1.1,
+          color: "black",
+          backgroundColor: "white",
+          borderColor: "black",
+        }}
+        whileTap={{ scale: 0.95 }}
+        className="flex cursor-pointer font-semibold flex-row items-center border-2 p-2 rounded-2xl text-white justify-end gap-2"
+      >
+        Register <FaLocationArrow />
+      </motion.button></Link>
+    </motion.div>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useAnimate } from "motion/react";
+import { motion, useAnimate } from "framer-motion";
 import { FaHeartbeat } from "react-icons/fa";
 import { FaLungsVirus } from "react-icons/fa6";
 import { GiLiver } from "react-icons/gi";
@@ -7,13 +7,8 @@ import { FaDAndD } from "react-icons/fa";
 import { IoMdAnalytics } from "react-icons/io";
 
 import {
-  SiAdobe,
   SiApple,
-  SiFacebook,
-  SiGoogle,
   SiLinkedin,
-  SiShopify,
-  SiSoundcloud,
   SiSpotify,
   SiInstagram,
 } from "react-icons/si";
@@ -33,23 +28,22 @@ const ClippathLinks = () => {
   return (
     <div className="border-4 border-black text-black divide-y divide-black">
       <div className="grid grid-cols-2 divide-x divide-black">
-        <Link to={"/dibeties"}>
+        <Link to="/diabetes">
           <LinkBox Icon={IoMdAnalytics} />
         </Link>
 
-        <Link to={"/heart"}>
+        <Link to="/heart">
           <LinkBox Icon={FaHeartbeat} />
         </Link>
       </div>
       <div className="grid grid-cols-4 divide-x divide-black">
-        <Link to={"/lungcancer"}>
-          {" "}
+        <Link to="/lungcancer">
           <LinkBox Icon={FaLungsVirus} />
         </Link>
-        <Link to={"/liver"}>
+        <Link to="/liver">
           <LinkBox Icon={GiLiver} />
         </Link>
-        <Link to={"/brestcancer"}>
+        <Link to="/breastcancer">
           <LinkBox Icon={FaDAndD} />
         </Link>
         <LinkBox Icon={SiApple} href="#" />
@@ -63,40 +57,37 @@ const ClippathLinks = () => {
   );
 };
 
-const LinkBox = ({ Icon, href }) => {
+const LinkBox = ({ Icon, to, href }) => {
   const [scope, animate] = useAnimate();
 
-  return (
-    <a
-      onMouseEnter={() => {
+  const content = (
+    <div
+      onMouseEnter={() =>
         animate(scope.current, {
-          clipPath: [
-            "polygon(0 0, 100% 0%, 100% 100%, 0% 100%)", // Final clip path on hover
-          ],
-        });
-      }}
-      onMouseLeave={() => {
+          clipPath: ["polygon(0 0, 100% 0%, 100% 100%, 0% 100%)"],
+        })
+      }
+      onMouseLeave={() =>
         animate(scope.current, {
-          clipPath: [
-            "polygon(0 0, 100% 0%, 0 0, 0% 100%)", // Initial clip path
-          ],
-        });
-      }}
+          clipPath: ["polygon(0 0, 100% 0%, 0 0, 0% 100%)"],
+        })
+      }
       className="relative grid h-20 w-full place-content-center sm:h-28 md:h-36"
-      href={href}
     >
       <Icon className="text-xl font-bold sm:text-3xl md:text-4xl" />
       <motion.div
         ref={scope}
         style={{
-          clipPath: "polygon(0 0, 100% 0%, 0 0, 0% 100%)", // Initial clip path
+          clipPath: "polygon(0 0, 100% 0%, 0 0, 0% 100%)",
         }}
         className="absolute inset-0 grid place-content-center bg-black"
       >
         <Icon className="text-xl text-white sm:text-3xl md:text-4xl" />
       </motion.div>
-    </a>
+    </div>
   );
+
+  return to ? <Link to={to}>{content}</Link> : <a href={href}>{content}</a>;
 };
 
 export default Work;
