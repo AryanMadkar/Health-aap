@@ -4,7 +4,7 @@ import HOme2 from "./Homecomp/HOme2";
 import Highlights from "../HIghlights/Highlights";
 import Glance from "../glance/Glance";
 import Work from "../../work/Work";
-import Approach from "../Approach/Approach";
+import Approach from "../approach/Approach";
 import Footer from "../Footer/Footer";
 
 const Home = () => {

@@ -34,7 +34,7 @@ const Approach1 = () => {
             Data is vital. Fostering an emotional <br />
             connection with your audience is equally <br />
             vital if you want to drive retention and <br />
-            advocacy. That’s why we create brands <br />
+            advocacy. Thats why we create brands <br />
             that not only captivate but also deliver <br />
             measurable and sustainable growth.
           </h1>

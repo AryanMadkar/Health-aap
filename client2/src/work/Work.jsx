@@ -87,7 +87,7 @@ const LinkBox = ({ Icon, to, href }) => {
     </div>
   );
 
-  return to ? <Link to={to}>{content}</Link> : <a href={href}>{content}</a>;
+  return to ? <Link to={to}>{content}</Link> : <Link href={href}>{content}</Link>;
 };
 
 export default Work;
