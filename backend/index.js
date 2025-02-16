@@ -13,14 +13,15 @@ const app = express();
 // Middleware
 app.use(
   express.json({
-    limit: "100mb",
     extended: true,
   })
 );
 app.use(
   cors({
-    credentials: true,
-  
+    origin: "http://localhost:5173", // Your React frontend URL
+    credentials: true, // Allows cookies and authentication headers
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 

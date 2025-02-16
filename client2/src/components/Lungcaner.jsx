@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 
-
-const Lungcaner = () => {
+const LungCancer = () => {
   const [formData, setFormData] = useState({
     gender: "",
     age: "",
@@ -23,15 +22,16 @@ const Lungcaner = () => {
   });
   const [loading, setLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [results, setResults] = useState("");
   const [count, setCount] = useState(1);
-  const intervalRef = useRef(null); // Ref for interval
+  const intervalRef = useRef(null);
 
-  // Handle cleanup on unmount
   useEffect(() => {
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
+
   useEffect(() => {
     if (count === 100 && loading) {
       setLoading(false);
@@ -48,26 +48,63 @@ const Lungcaner = () => {
     setLoading(true);
     setCount(0);
 
-    try {
-      // const response = await axios.post(
-      //   "http://localhost:3000/health/v1/brestcancer",
-      //   formData
-      // );
+    let processingdata = {
+      gender: formData.gender === "male" ? 0 : 1,
+      age: parseInt(formData.age),
+      smoking: formData.smoking === "Yes" ? 2 : 1,
+      yellow_fingers: formData.yellow_fingers === "Yes" ? 2 : 1,
+      anxiety: formData.anxiety === "Yes" ? 2 : 1,
+      peer_pressure: formData.peer_pressure === "Yes" ? 2 : 1,
+      chronic_disease: formData.chronic_disease === "Yes" ? 2 : 1,
+      fatigue: formData.fatigue === "Yes" ? 2 : 1,
+      allergy: formData.allergy === "Yes" ? 2 : 1,
+      wheezing: formData.wheezing === "Yes" ? 2 : 1,
+      alcohol_consuming: formData.alcohol_consuming === "Yes" ? 2 : 1,
+      coughing: formData.coughing === "Yes" ? 2 : 1,
+      shortness_of_breath: formData.shortness_of_breath === "Yes"? 2 : 1,
+      swallowing_difficulty: formData.swallowing_difficulty === "Yes"? 2 : 1,
+      chest_pain: formData.chest_pain === "Yes"? 2 : 1,
 
-      console.log(formData);
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/health/v1/lungcancer",
+        processingdata,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+      setResults(response.data);
+      console.log(response.data);
+
       intervalRef.current = setInterval(() => {
-        setCount((prev) => {
-          if (prev >= 100) {
-            clearInterval(intervalRef.current);
-            return 100;
-          }
-          return prev + 1;
-        });
-      }, 400);
+        setCount((prev) => (prev >= 100 ? 100 : prev + 1));
+      }, 200);
     } catch (error) {
       console.error(error);
-      setLoading(false); // Ensure loading is reset even on failure
+      setLoading(false);
     }
+  };
+
+  const dropdownOptions = {
+    gender: ["Male", "Female", "Other"],
+    smoking: ["Yes", "No"],
+    yellow_fingers: ["Yes", "No"],
+    anxiety: ["Yes", "No"],
+    peer_pressure: ["Yes", "No"],
+    chronic_disease: ["Yes", "No"],
+    fatigue: ["Yes", "No"],
+    allergy: ["Yes", "No"],
+    wheezing: ["Yes", "No"],
+    alcohol_consuming: ["Yes", "No"],
+    coughing: ["Yes", "No"],
+    shortness_of_breath: ["Yes", "No"],
+    swallowing_difficulty: ["Yes", "No"],
+    chest_pain: ["Yes", "No"],
   };
 
   return (
@@ -86,75 +123,77 @@ const Lungcaner = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="h-[67vh] p-[2rem] w-[50vw] overflow-auto border-2 border-white flex flex-wrap flex-row items-start justify-center"
+            className="h-[67vh] p-[2rem] w-[50vw] overflow-auto border-2 border-white flex flex-wrap items-center justify-center"
           >
             <h2 className="text-2xl font-bold text-white mb-6 text-center">
-              Breast Cancer Prediction
+              Lung Cancer Prediction
             </h2>
             <form
               onSubmit={handleSubmit}
-              className="space-y-6 items-center justify-center gap-4 flex flex-row flex-wrap"
+              className="space-y-6 flex flex-wrap gap-4"
             >
               {Object.entries(formData).map(([key, value]) => (
                 <div key={key}>
-                  <label className="flex flex-row text-sm font-medium text-gray-300 capitalize">
+                  <label className="text-sm font-medium text-gray-300 capitalize">
                     {key.replace(/_/g, " ")}
                   </label>
-                  <input
-                    type="number"
-                    name={key}
-                    value={value}
-                    onChange={handleChange}
-                    className="mt-1 block w-full rounded-lg bg-slate-700/50 border border-slate-600/50 text-white py-2 px-3 focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
-                    required
-                  />
+                  {dropdownOptions[key] ? (
+                    <select
+                      name={key}
+                      value={value}
+                      onChange={handleChange}
+                      className="mt-1 block w-full rounded-lg bg-slate-700/50 border border-slate-600/50 text-white py-2 px-3 focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                      required
+                    >
+                      <option value="">Select</option>
+                      {dropdownOptions[key].map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <input
+                      type="number"
+                      name={key}
+                      value={value}
+                      onChange={handleChange}
+                      className="mt-1 block w-full rounded-lg bg-slate-700/50 border border-slate-600/50 text-white py-2 px-3 focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                      required
+                    />
+                  )}
                 </div>
               ))}
-
               <motion.button
                 whileHover={!loading ? { scale: 1.05 } : {}}
                 whileTap={!loading ? { scale: 0.95 } : {}}
                 type="submit"
-                className="w-[40vw] mb-5 bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                className="w-[40vw] bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-4 rounded-lg"
                 disabled={loading}
               >
-                {loading ? (
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                    className="h-5 w-5 border-2 border-white/50 border-t-transparent rounded-full mx-auto"
-                  />
-                ) : (
-                  "Predict"
-                )}
+                {loading ? "Loading..." : "Predict"}
               </motion.button>
             </form>
           </motion.div>
         </AnimatePresence>
       ) : (
         <AnimatePresence>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="z-10 h-[20rem] w-[30rem] flex flex-col items-center justify-center backdrop-blur-lg rounded-2xl p-8 shadow-xl text-center"
-          >
+          <motion.div className="h-[20rem] w-[30rem] flex flex-col items-center justify-center bg-gray-800 p-8 rounded-2xl shadow-xl">
             <h3 className="text-2xl font-bold text-white mb-4">
               Prediction Result
             </h3>
             <p className="text-gray-200 mb-6">
-              Breast Cancer prediction result here...
+              {results.prediction || "No data available"}
             </p>
             <button
               onClick={() => setShowResults(false)}
-              className="bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+              className="bg-cyan-500 hover:bg-cyan-400 text-white py-2 px-6 rounded-lg"
             >
               Test Again
             </button>
           </motion.div>
         </AnimatePresence>
       )}
-
-      {/* Background Design Elements */}
       <div
         className="h-[99vh] absolute left-[-5rem] w-[25rem] bg-gradient-to-r from-[#3a0ca3] via-[#7209b7] to-[#4361ee] shadow-xl"
         style={{ clipPath: "polygon(0 0, 100% 32%, 100% 68%, 0 100%)" }}
@@ -175,4 +214,7 @@ const Lungcaner = () => {
   );
 };
 
-export default Lungcaner;
+export default LungCancer;
+
+{
+}

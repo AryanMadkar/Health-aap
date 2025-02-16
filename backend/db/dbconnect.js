@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const connect = async () => {
   try {
     await mongoose.connect(
-      "mongodb+srv://Aryan:Aradhya%403462@health.8hipr.mongodb.net/",
+      "mongodb://localhost:27017/health_app_pc",
       {
         useNewUrlParser: true, // Ensures proper URL parsing
         useUnifiedTopology: true, // Enables the new MongoDB driver topology

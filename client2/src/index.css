@@ -198,29 +198,54 @@
     #000000
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.leo{
+.leo {
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
     #434343,
     #000000
   ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #434343,
-    #000000
-  );
+  background: linear-gradient(to right, #434343, #000000);
+}
+.bird {
+  background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(14.5px);
+  -webkit-backdrop-filter: blur(14.5px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 10px !important;
 }
 
 ::-webkit-scrollbar-track {
-  background: #d1e5ff;
+  background: #d1e5ff !important;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(#642bff, #ff22e6);
-  border-radius: 2px;
+  background: linear-gradient(#642bff, #ff22e6) !important;
+  border-radius: 2px !important;
+}
+
+html,
+body,
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #642bff #d1e5ff !important;
+}
+
+::-webkit-scrollbar {
+  width: 10px !important;
+  display: block !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #d1e5ff !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#642bff, #ff22e6) !important;
+  border-radius: 2px !important;
 }

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,18 +17,20 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     try {
       const response = await axios.post(
         "http://localhost:3000/health/v1/register",
         formData,
         {
-          headers: {
-            "Content-Type": "application/json",
-          },
           withCredentials: true,
         }
       );
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+      })
+      navigate('/login')
       console.log("Response:", response.data);
     } catch (error) {
       console.error("Error:", error);

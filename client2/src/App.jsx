@@ -52,7 +52,7 @@ function App() {
   };
 
   return (
-    <div className="bg-black z-50 overflow-hidden text-white min-h-[100vh] w-full">
+    <div className="bg-black desiui-scroll-container  z-50 overflow-hidden text-white min-h-[100vh] w-full">
       {/* Custom Cursor */}
       <motion.div
         variants={variants}

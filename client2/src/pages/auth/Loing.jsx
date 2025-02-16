@@ -37,7 +37,7 @@ const Loing = () => {
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="flex leo min-h-fit rounded-2xl mt-24 text-white flex-col justify-center px-6 py-12 lg:px-8 w-1/2 border-2 border-white"
+        className="flex leo2 min-h-fit bird rounded-2xl mt-24 text-white flex-col justify-center px-6 py-12 lg:px-8 w-1/2 border-2 border-white"
       >
         <motion.div
           initial={{ scale: 0.8 }}
