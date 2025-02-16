@@ -1,4 +1,4 @@
 {
-    "builds":[{"src":"index.py","use":"@vercel/python"}],
-    "routes":[{"src":"/(.*)","dest":"index.py"}]
+    "builds":[{"src":"F:/dektop241205/health_app/multiplediseas/main.py","use":"@vercel/python"}],
+    "routes":[{"src":"/(.*)","dest":"F:/dektop241205/health_app/multiplediseas/main.py"}]
 }
