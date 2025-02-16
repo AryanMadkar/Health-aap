@@ -1,8 +1,82 @@
-import React from 'react'
-
+import React, { useState } from "react";
+import axios from "axios";
+import { motion, AnimatePresence } from "framer-motion";
 const Brestcancer = () => {
+  const [formData, setFormData] = useState({
+    mean_radius:"",
+    mean_texture:"",
+    mean_perimeter:"",
+    mean_area:"",
+    mean_smoothness:"",
+  });
+  const [loading, setLoading] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      // Demo API call
+      const response = await axios.post(
+        "http://localhost:3000/health/v1/brestcancer",
+        formData
+      );
+      setShowResults(true);
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+      
+    }
+  };
   return (
-    <div className="relative leo flex items-center justify-center h-[99vh] w-[99vw] bg-black overflow-hidden">
+    <div className="relative flex items-center justify-center h-[99vh] w-[99vw] bg-black overflow-hidden">
+      <div className="h-[67vh] p-[2rem] w-[50vw] overflow-auto    leo  border-2 border-white flex flex-wrap flex-row items-start justify-center">
+        <h2 className="text-2xl font-bold text-white mb-6 text-center">
+          Heart Disease Prediction
+        </h2>
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-6 items-center  justify-center gap-4 flex flex-row flex-wrap"
+        >
+          {Object.entries(formData).map(([key, value]) => (
+            <div key={key}>
+              <label className="flex flex-row text-sm font-medium text-gray-300 capitalize">
+                {key.replace(/([A-Z])/g, " $1")}
+              </label>
+              <input
+                type="number"
+                name={key}
+                value={value}
+                onChange={handleChange}
+                className="mt-1 block w-full rounded-lg bg-slate-700/50 border border-slate-600/50 text-white py-2 px-3 focus:ring-2 focus:ring-cyan-400 focus:border-transparent"
+                required
+              />
+            </div>
+          ))}
+
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            type="submit"
+            className="w-[40vw] mb-5 bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+            disabled={loading}
+          >
+            {loading ? (
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1, repeat: Infinity }}
+                className="h-5 w-4 mb-10 border-2 border-white/50 border-t-transparent rounded-full mx-[2rem]"
+              />
+            ) : (
+              "Predict"
+            )}
+          </motion.button>
+        </form>
+      </div>
       {/* Left Section - Moved further out */}
       <div
         className="h-[99vh] absolute left-[-5rem] w-[25rem] bg-gradient-to-r from-[#3a0ca3] via-[#7209b7] to-[#4361ee] shadow-xl"

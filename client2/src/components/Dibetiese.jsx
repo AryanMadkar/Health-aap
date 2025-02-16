@@ -51,7 +51,7 @@ const DiabetesForm = () => {
     <div className="relative flex items-center justify-center h-full min-h-[100vh] w-screen p-[1rem] bg-slate-900 ">
       {/* Background elements with reduced darkness */}
 
-      <div className="relative flex items-center justify-center min-h-[100vh] h-full w-full">
+      <div className="relative flex  items-center justify-center min-h-[100vh] h-full w-full">
         <AnimatePresence>
           {!showResults && (
             <motion.div
