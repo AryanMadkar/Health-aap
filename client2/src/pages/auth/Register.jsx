@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/health/v1/register",
+        "https://health-aap-backend.vercel.app/health/v1/register",
         formData,
         {
           withCredentials: true,

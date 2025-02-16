@@ -41,7 +41,7 @@ const Brestcancer = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/health/v1/brestcancer",
+        "https://health-aap-backend.vercel.app/health/v1/brestcancer",
         formData,{
           headers: {
             "Content-Type": "application/json",
