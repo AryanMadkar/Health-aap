@@ -18,7 +18,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "*", // Your React frontend URL
+    origin: "https://health-aap.onrender.com/", // Your React frontend URL
     credentials: true, // Allows cookies and authentication headers
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
