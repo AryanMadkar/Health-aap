@@ -42,7 +42,7 @@ def diabetes():
                 ]
             ]
         )
-        scaled_data, _ = scale_data_dibaties(input_data)
+        scaled_data, _ = scale_data_diabetes(input_data)
         prediction = diabetes_model.predict(scaled_data)
         result = (
             "Yes, you are likely to have diabetes."
