@@ -43,7 +43,7 @@ const DiabetesForm = () => {
 
     try {
       const response = await axios.post(
-        "https://health-aap-backend.vercel.app/health/v1/diabites",
+        "https://health-aap-backend.onrender.com/health/v1/diabites",
         {
           Pregnancies: formData.pregnancies,
           Glucose: formData.glucose,

@@ -59,7 +59,7 @@ const Liver = () => {
 
     try {
       const response = await axios.post(
-        "https://health-aap-backend.vercel.app/health/v1/liver",
+        "https://health-aap-backend.onrender.com/health/v1/liver",
         formData,
         {
           headers: {

@@ -65,7 +65,7 @@ const Heartdiseases = () => {
         ),
       };
       const response = await axios.post(
-        "https://health-aap-backend.vercel.app/health/v1/heart",
+        "https://health-aap-backend.onrender.com/health/v1/heart",
         processedData,{
           headers: {
             "Content-Type": "application/json",
