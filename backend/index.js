@@ -11,6 +11,7 @@ import router2 from "./routes/processroutes.js";
 const app = express();
 
 // Middleware
+app.use(cookieparser());
 app.use(
   express.json({
     extended: true,
@@ -26,7 +27,6 @@ app.use(
 );
 
 // Cookie Parser middleware
-app.use(cookieparser());
 
 // Routes
 app.use("/health/v1", router);

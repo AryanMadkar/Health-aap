@@ -61,6 +61,10 @@ const userLogin = async (req, res) => {
     res
       .cookie("token", token, {
         maxAge: 24 * 60 * 60 * 1000,
+        httpOnly: true,
+        secure: true, // Ensures cookie is sent only over HTTPS
+        sameSite: 'none', // Required for cross-site cookies
+        path: '/', // Accessible across all paths
       })
       .json({
         message: "Logged in successfully",
