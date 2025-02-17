@@ -18,7 +18,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "https://health-q82kwwb2o-drakes-projects-6e314338.vercel.app/", // Your React frontend URL
+    origin: "*", // Your React frontend URL
     credentials: true, // Allows cookies and authentication headers
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
