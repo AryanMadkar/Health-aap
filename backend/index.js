@@ -18,7 +18,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "https://health-aap.onrender.com/", // Your React frontend URL
+    origin: "https://health-aap.onrender.com", // Corrected: No trailing slash
     credentials: true, // Allows cookies and authentication headers
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -26,12 +26,12 @@ app.use(
 );
 
 // Cookie Parser middleware
-
 app.use(cookieparser());
 
 // Routes
 app.use("/health/v1", router);
 app.use("/health/v1", router2);
+
 // Start server function
 const server = async () => {
   try {
