@@ -1,9 +1,12 @@
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
+import os
 
-dh = pd.read_csv(
-    r"F:\dektop241205\health_app\multiplediseas\processing\heart_disease_data.csv"
-)
+# Get the path of the CSV file dynamically
+csv_path = os.path.join(os.path.dirname(__file__), "processing", "heart_disease_data.csv")
+
+# Load the CSV file
+dh = pd.read_csv(csv_path)
 x = dh.drop(columns="target", axis=1)
 
 

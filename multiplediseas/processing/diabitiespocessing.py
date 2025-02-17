@@ -1,6 +1,12 @@
 from sklearn.preprocessing import StandardScaler
 import pandas as pd
-dh = pd.read_csv(r"F:\dektop241205\health_app\multiplediseas\processing\diabetes.csv")
+import os
+
+# Get the path of the CSV file dynamically
+csv_path = os.path.join(os.path.dirname(__file__), "processing", "diabetes.csv")
+
+# Load the CSV file
+dh = pd.read_csv(csv_path)
 x = dh.drop(columns="Outcome",axis = 1)
 def scale_data_dibaties(data, scaler=None):
     if not scaler:
