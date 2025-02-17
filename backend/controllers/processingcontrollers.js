@@ -2,7 +2,7 @@ import axios from "axios";
 import dib5etesmodel from "../model/diabitesmodel.js";
 import usermodel from "../model/userSchema.js";
 
-const baseurl = "http://127.0.0.1:5000";
+const baseurl = "https://health-aap-process.onrender.com";
 
 const dibetiesprocessing = async (req, res) => {
   try {

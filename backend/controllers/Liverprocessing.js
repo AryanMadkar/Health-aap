@@ -2,7 +2,7 @@ import axios from "axios";
 import usermodel from "../model/userSchema.js";
 import livermodel from "../model/liverschema.js";
 
-const baseurl = "http://127.0.0.1:5000";
+const baseurl = "https://health-aap-process.onrender.com";
 
 const liverprocessing = async (req, res) => {
   try {

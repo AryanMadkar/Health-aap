@@ -3,7 +3,7 @@ import axios from "axios";
 import usermodel from "../model/userSchema.js";
 import lungcancermodel from "../model/lungcancer.js";
 
-const baseurl = "http://127.0.0.1:5000";
+const baseurl = "https://health-aap-process.onrender.com";
 
 const lungprocessing = async (req, res) => {
   try {
