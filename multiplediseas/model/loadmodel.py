@@ -3,7 +3,7 @@ import os
 
 # Function to load model
 def load_model(filename):
-    filepath = os.path.join(os.path.dirname(__file__), "model", filename)  # Change "models" -> "model"
+    filepath = os.path.join(os.path.dirname(__file__), filename)  # Change "models" -> "model"
     with open(filepath, "rb") as f:
         return pickle.load(f)
 

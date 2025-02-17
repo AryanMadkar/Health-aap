@@ -2,18 +2,18 @@ from flask import Flask, request, jsonify
 import numpy as np
 
 # Importing processing functions and models
-from processing.diabitiespocessing import scale_data_dibaties
+from processing.diabitiespocessing import scale_data_diabetes
 from processing.heartprocessing import scale_data_heart
 from processing.lungcancerprocessing import scale_data_lung
 from processing.brestcancerprocessing import scale_data_brest
 from processing.liverprocessing import scale_data_liver
 from model.loadmodel import (
-    diabitie_model,
+    diabetes_model,
     heart_model,
-    lungcancer_model, 
-    brest_cancer_model,
-    insurancemodel,
-    livermodel,
+    lung_cancer_model, 
+    breast_cancer_model,
+    insurance_model,
+    liver_model,
 )
 
 app = Flask(__name__)
@@ -43,7 +43,7 @@ def diabetes():
             ]
         )
         scaled_data, _ = scale_data_dibaties(input_data)
-        prediction = diabitie_model.predict(scaled_data)
+        prediction = diabetes_model.predict(scaled_data)
         result = (
             "Yes, you are likely to have diabetes."
             if prediction[0] == 1
@@ -120,7 +120,7 @@ def lungcancer():
             ]
         )
         scaled_data, _ = scale_data_lung(input_data)
-        prediction = lungcancer_model.predict(scaled_data)
+        prediction = lung_cancer_model.predict(scaled_data)
         result = (
             "Yes, you are likely to have lung cancer."
             if prediction[0] == 1
@@ -147,7 +147,7 @@ def breastcancer():
             ]
         )
         scaled_data, _ = scale_data_brest(input_data)
-        prediction = brest_cancer_model.predict(scaled_data)
+        prediction = breast_cancer_model.predict(scaled_data)
         result = (
             "Yes, you are likely to have breast cancer."
             if prediction[0] == 1
@@ -174,7 +174,7 @@ def insurance():
                 ]
             ]
         )
-        prediction = insurancemodel.predict(input_data)
+        prediction = insurance_model.predict(input_data)
         return jsonify({"prediction": float(prediction[0])})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -201,7 +201,7 @@ def liver():
             ]
         )
         scaled_data, _ = scale_data_liver(input_data)
-        prediction = livermodel.predict(scaled_data)
+        prediction = liver_model.predict(scaled_data)
         result = (
             "Yes, you are likely to have liver problems."
             if prediction[0] == 1
