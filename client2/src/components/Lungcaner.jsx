@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
+import { useTheme } from "../context/Context.jsx";
 
 const LungCancer = () => {
+    const { authen } = useTheme();
+  
   const [formData, setFormData] = useState({
     gender: "",
     age: "",
@@ -68,6 +72,7 @@ const LungCancer = () => {
     };
 
     try {
+    if (authen) {
       const response = await axios.post(
         "https://health-aap-backend.onrender.com/health/v1/lungcancer",
         processingdata,
@@ -84,8 +89,13 @@ const LungCancer = () => {
       intervalRef.current = setInterval(() => {
         setCount((prev) => (prev >= 100 ? 100 : prev + 1));
       }, 200);
+    }
+     else {
+      toast.error("Please sign in to access this feature.");
+      setLoading(false);}
     } catch (error) {
       console.error(error);
+      toast.error("An error occurred while processing your request.");
       setLoading(false);
     }
   };

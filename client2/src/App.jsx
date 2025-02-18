@@ -21,20 +21,22 @@ function App() {
     const mouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener("mousemove", mouseMove);
 
-    // Hide cursor when interacting with inputs
     const handleMouseEnter = () => setHideCursor(true);
     const handleMouseLeave = () => setHideCursor(false);
 
-    document.querySelectorAll("input, textarea, button").forEach((el) => {
+    window.addEventListener("mousemove", mouseMove);
+
+    // Attach event listeners only once
+    const interactiveElements = document.querySelectorAll("input, textarea, button");
+    interactiveElements.forEach((el) => {
       el.addEventListener("mouseenter", handleMouseEnter);
       el.addEventListener("mouseleave", handleMouseLeave);
     });
 
     return () => {
       window.removeEventListener("mousemove", mouseMove);
-      document.querySelectorAll("input, textarea, button").forEach((el) => {
+      interactiveElements.forEach((el) => {
         el.removeEventListener("mouseenter", handleMouseEnter);
         el.removeEventListener("mouseleave", handleMouseLeave);
       });
@@ -52,13 +54,15 @@ function App() {
   };
 
   return (
-    <div className="bg-black desiui-scroll-container  z-50 overflow-hidden text-white min-h-[100vh] w-full">
+    <div className="bg-black  desiui-scroll-container z-50 overflow-hidden text-white min-h-[100vh] w-full">
       {/* Custom Cursor */}
-      <motion.div
-        variants={variants}
-        animate={cursorVariant}
-        className="cursor fixed top-0 left-0 w-8 h-8 bg-white rounded-full pointer-events-none z-50"
-      ></motion.div>
+      {!hideCursor && (
+        <motion.div
+          variants={variants}
+          animate="default"
+          className="cursor fixed top-0 left-0 w-8 h-8 bg-white rounded-full pointer-events-none z-50"
+        />
+      )}
 
       {/* Scroll Progress Bar */}
       <motion.div

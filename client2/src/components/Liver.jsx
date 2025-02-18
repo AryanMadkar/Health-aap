@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
+import { useTheme } from "../context/Context.jsx";
 
 const Liver = () => {
+  const { authen } = useTheme();
+
   const [formData, setFormData] = useState({
     Age: "",
     Gender: "1", // Default Male
@@ -19,7 +23,7 @@ const Liver = () => {
   const [loading, setLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [count, setCount] = useState(1);
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState("");
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -58,31 +62,38 @@ const Liver = () => {
     setCount(0);
 
     try {
-      const response = await axios.post(
-        "https://health-aap-backend.onrender.com/health/v1/liver",
-        formData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          //
-          withCredentials: true,
-        }
-      );
-      console.log(response.data); // Check values in console before API call
-      setResult(response.data.result);
-
-      intervalRef.current = setInterval(() => {
-        setCount((prev) => {
-          if (prev >= 100) {
-            clearInterval(intervalRef.current);
-            return 100;
+      if (authen) {
+        const response = await axios.post(
+          "https://health-aap-backend.onrender.com/health/v1/liver",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            //
+            withCredentials: true,
           }
-          return prev + 1;
-        });
-      }, 200);
+        );
+        console.log(response.data); // Check values in console before API call
+        setResult(response.data.result);
+  
+        intervalRef.current = setInterval(() => {
+          setCount((prev) => {
+            if (prev >= 100) {
+              clearInterval(intervalRef.current);
+              return 100;
+            }
+            return prev + 1;
+          });
+        }, 200);
+      }
+      else {
+        toast.error("Please sign in to access the Liver Disease Prediction feature.");
+        setLoading(false);
+      }
     } catch (error) {
       console.error(error);
+      toast.error("An error occurred while processing your request.");
       setLoading(false);
     }
   };
@@ -247,7 +258,7 @@ const Liver = () => {
                   <option value="0">No</option>
                 </select>
               </div>
-               <div>
+              <div>
                 <label className="flex flex-row text-sm font-medium text-gray-300">
                   LiverFunctionTest{" "}
                 </label>
@@ -260,7 +271,6 @@ const Liver = () => {
                   required
                 />
               </div>
-              
 
               {/* Submit Button */}
               <motion.button
@@ -275,27 +285,27 @@ const Liver = () => {
             </form>
           </motion.div>
         </AnimatePresence>
-      ) :  <AnimatePresence>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="z-10 h-[20rem] w-[30rem] flex flex-col items-center justify-center backdrop-blur-lg rounded-2xl p-8 shadow-xl text-center"
-                >
-                  <h3 className="text-2xl font-bold text-white mb-4">
-                    Prediction Result
-                  </h3>
-                  <p className="text-gray-200 mb-6">
-                    {result?.prediction}
-                  </p>
-                  <button
-                    onClick={() => setShowResults(false)}
-                    className="bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
-                  >
-                    Test Again
-                  </button>
-                </motion.div>
-              </AnimatePresence>}
-              <div
+      ) : (
+        <AnimatePresence>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="z-10 h-[20rem] w-[30rem] flex flex-col items-center justify-center backdrop-blur-lg rounded-2xl p-8 shadow-xl text-center"
+          >
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Prediction Result
+            </h3>
+            <p className="text-gray-200 mb-6">{result?.prediction}</p>
+            <button
+              onClick={() => setShowResults(false)}
+              className="bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+            >
+              Test Again
+            </button>
+          </motion.div>
+        </AnimatePresence>
+      )}
+      <div
         className="h-[99vh] absolute flex items-center justify-center   left-[-5rem] w-[25rem] bg-gradient-to-r from-[#3a0ca3] via-[#7209b7] to-[#4361ee] "
         style={{ clipPath: "polygon(0 0, 100% 32%, 100% 68%, 0 100%)" }}
       >

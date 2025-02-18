@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+.phone2{
+  background: url("../public/phone.jpg");
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  filter: brightness(200%);  
+  color: white;
+}
+
 .darkblue {
   background: hsla(266, 75%, 55%, 1);
 

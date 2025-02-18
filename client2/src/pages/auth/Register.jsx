@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-
+import {toast} from "react-toastify"
 const Register = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -31,8 +31,10 @@ const Register = () => {
         password: "",
       })
       navigate('/login')
+      Toast.success("Registration successful, please log in")
       console.log("Response:", response.data);
     } catch (error) {
+      Toast.error("Registration failed, please try again")
       console.error("Error:", error);
     }
   };

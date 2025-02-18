@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import {toast}from "react-toastify"
+import { useTheme } from "../../context/Context";
 const Loing = () => {
+  const {setUserdata,setAuthen} = useTheme()
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,7 +31,12 @@ const Loing = () => {
         }
       );
       console.log("Response:", response.data);
+      setUserdata(response.data.user)
+      navigate('/')
+      toast.success("Logged in successfully")
+      setAuthen(true)
     } catch (error) {
+      toast.error("Invalid email or password")
       console.error("Error:", error);
     }
   };

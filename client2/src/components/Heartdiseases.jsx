@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
+import { useTheme } from "../context/Context.jsx";
 
 const Heartdiseases = () => {
+  const { authen } = useTheme();
+
   const [formData, setFormData] = useState({
     age: "",
     sex: "Male",
@@ -47,47 +51,55 @@ const Heartdiseases = () => {
     setCount(0);
 
     try {
-      const processedData = {
-        ...formData,
-        sex: formData.sex === "Male" ? 1 : 0,
-        cp: [
-          "Typical Angina",
-          "Atypical Angina",
-          "Non-Anginal Pain",
-          "Asymptomatic",
-        ].indexOf(formData.cp),
-        fbs: formData.fbs === "Yes" ? 1 : 0,
-        restecg: formData.restecg === "Abnormal" ? 1 : 0,
-        exang: formData.exang === "Yes" ? 1 : 0,
-        slope: ["Upsloping", "Flat", "Downsloping"].indexOf(formData.slope),
-        thal: ["Normal", "Fixed Defect", "Reversible Defect"].indexOf(
-          formData.thal
-        ),
-      };
-      const response = await axios.post(
-        "https://health-aap-backend.onrender.com/health/v1/heart",
-        processedData,{
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-
-      console.log(response.data);
-      setResults(response.data);
-      intervalRef.current = setInterval(() => {
-        setCount((prev) => {
-          if (prev >= 100) {
-            clearInterval(intervalRef.current);
-            return 100;
+      if (authen) {
+        const processedData = {
+          ...formData,
+          sex: formData.sex === "Male" ? 1 : 0,
+          cp: [
+            "Typical Angina",
+            "Atypical Angina",
+            "Non-Anginal Pain",
+            "Asymptomatic",
+          ].indexOf(formData.cp),
+          fbs: formData.fbs === "Yes" ? 1 : 0,
+          restecg: formData.restecg === "Abnormal" ? 1 : 0,
+          exang: formData.exang === "Yes" ? 1 : 0,
+          slope: ["Upsloping", "Flat", "Downsloping"].indexOf(formData.slope),
+          thal: ["Normal", "Fixed Defect", "Reversible Defect"].indexOf(
+            formData.thal
+          ),
+        };
+        const response = await axios.post(
+          "https://health-aap-backend.onrender.com/health/v1/heart",
+          processedData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
           }
-          return prev + 1;
-        });
-      }, 200);
+        );
+
+        console.log(response.data);
+        setResults(response.data);
+        intervalRef.current = setInterval(() => {
+          setCount((prev) => {
+            if (prev >= 100) {
+              clearInterval(intervalRef.current);
+              return 100;
+            }
+            return prev + 1;
+          });
+        }, 200);
+      } else {
+        toast.error("Please sign in to access the prediction feature.");
+        setLoading(false);
+      }
     } catch (error) {
       console.error(error);
-      setLoading(false); // Ensure loading is reset even on failure
+      setLoading(false);
+      toast.error("An error occurred while making the prediction.");
+      // Ensure loading is reset even on failure
     }
   };
 
@@ -229,9 +241,7 @@ const Heartdiseases = () => {
             <h3 className="text-2xl font-bold text-white mb-4">
               Prediction Result
             </h3>
-            <p className="text-gray-200 mb-6">
-              {results?.prediction}
-            </p>
+            <p className="text-gray-200 mb-6">{results?.prediction}</p>
             <button
               onClick={() => setShowResults(false)}
               className="bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-6 rounded-lg transition-colors"

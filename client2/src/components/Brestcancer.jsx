@@ -1,8 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "react-toastify";
+import { useTheme } from "../context/Context";
 
 const Brestcancer = () => {
+  const { authen } = useTheme();
   const [formData, setFormData] = useState({
     mean_radius: "",
     mean_texture: "",
@@ -14,7 +17,7 @@ const Brestcancer = () => {
   const [loading, setLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [count, setCount] = useState(1);
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState("");
   const intervalRef = useRef(null); // Ref for interval
 
   // Handle cleanup on unmount
@@ -40,30 +43,40 @@ const Brestcancer = () => {
     setCount(0);
 
     try {
-      const response = await axios.post(
-        "https://health-aap-backend.onrender.com/health/v1/brestcancer",
-        formData,{
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      );
-
-      console.log(response.data);
-      setResult(response.data)
-      intervalRef.current = setInterval(() => {
-        setCount((prev) => {
-          if (prev >= 100) {
-            clearInterval(intervalRef.current);
-            return 100;
+      if (authen) {
+        const response = await axios.post(
+          "https://health-aap-backend.onrender.com/health/v1/brestcancer",
+          formData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            withCredentials: true,
           }
-          return prev + 1;
-        });
-      }, 200);
+        );
+
+        console.log(response.data);
+        setShowResults(true);
+        setResult(response.data);
+        intervalRef.current = setInterval(() => {
+          setCount((prev) => {
+            if (prev >= 100) {
+              clearInterval(intervalRef.current);
+              return 100;
+            }
+            return prev + 1;
+          });
+        }, 200);
+      } else {
+        toast.error("Please login to access this feature");
+        setLoading(false);
+      }
     } catch (error) {
       console.error(error);
-      setLoading(false); // Ensure loading is reset even on failure
+      setShowResults(false);
+      toast.error("Failed to predict breast cancer");
+      setLoading(false); //
+      // Ensure loading is reset even on failure
     }
   };
 
@@ -138,9 +151,7 @@ const Brestcancer = () => {
             <h3 className="text-2xl font-bold text-white mb-4">
               Prediction Result
             </h3>
-            <p className="text-gray-200 mb-6">
-             {result?.prediction}
-            </p>
+            <p className="text-gray-200 mb-6">{result?.prediction}</p>
             <button
               onClick={() => setShowResults(false)}
               className="bg-cyan-500/90 hover:bg-cyan-400 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
