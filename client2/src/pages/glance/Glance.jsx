@@ -69,7 +69,7 @@ const Glance = () => {
       <div className="flex relative  h-full w-full border-white flex-row items-center justify-center gap-2">
         <motion.img
           className="h-[85vh] mt-6 w-[25.5vw] absolute left-0 mr-[11rem] bottom-2 "
-          src="https://cdn.pixabay.com/photo/2022/11/08/07/53/generated-7577945_640.jpg"
+          src="https://thumbs.dreamstime.com/z/enchanting-vertical-composition-portraying-neon-lit-urban-landscape-future-where-artificial-intelligence-human-345450360.jpg?ct=jpeg"
         />
         <motion.img
           className="h-[86vh] mt-6 w-auto mr-[11rem] bottom-2 "
