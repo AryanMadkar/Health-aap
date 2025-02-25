@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://health-aap-backend.onrender.com/health/v1/register",
+        "http://localhost:3000/health/v1/register",
         formData,
         {
           withCredentials: true,
@@ -31,10 +31,10 @@ const Register = () => {
         password: "",
       })
       navigate('/login')
-      Toast.success("Registration successful, please log in")
+      toast.success("Registration successful, please log in")
       console.log("Response:", response.data);
     } catch (error) {
-      Toast.error("Registration failed, please try again")
+      toast.error("Registration failed, please try again")
       console.error("Error:", error);
     }
   };

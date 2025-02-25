@@ -52,7 +52,9 @@ const Brestcancer = () => {
               "Content-Type": "application/json",
             },
             withCredentials: true,
+            
           }
+
         );
 
         console.log(response.data);
