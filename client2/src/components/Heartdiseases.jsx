@@ -70,7 +70,7 @@ const Heartdiseases = () => {
           ),
         };
         const response = await axios.post(
-          "https://health-aap-backend.onrender.com/health/v1/heart",
+          "http://localhost:3000/health/v1/heart",
           processedData,
           {
             headers: {

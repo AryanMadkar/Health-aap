@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
@@ -64,7 +65,7 @@ const Liver = () => {
     try {
       if (authen) {
         const response = await axios.post(
-          "https://health-aap-backend.onrender.com/health/v1/liver",
+          "http://localhost:3000/health/v1/liver",
           formData,
           {
             headers: {
