@@ -73,9 +73,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route exact path="/dibeties" element={<Dibetiese />} />
+        <Route exact path="/diabetes" element={<Dibetiese />} />
         <Route exact path="/lungcancer" element={<Lungcaner />} />
-        <Route exact path="/brestcancer" element={<Brestcancer />} />
+        <Route exact path="/breastcancer" element={<Brestcancer />} />
         <Route exact path="/heart" element={<Heartdiseases />} />
         <Route exact path="/liver" element={<Liver />} />
         <Route exact path="/register" element={<Register />} />
