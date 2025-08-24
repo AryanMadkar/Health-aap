@@ -19,7 +19,7 @@ app.use(
 );
 app.use(
   cors({
-    origin: "https://health-aap.onrender.com", // Corrected: No trailing slash
+    origin: "*", // Corrected: No trailing slash
     credentials: true, // Allows cookies and authentication headers
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],

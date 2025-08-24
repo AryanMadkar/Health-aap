@@ -19,7 +19,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://health-aap-backend.onrender.com/health/v1/register",
+        "http://127.0.0.1:5000/health/v1/register",
         formData,
         {
           withCredentials: true,

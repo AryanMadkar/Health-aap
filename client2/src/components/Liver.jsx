@@ -64,7 +64,7 @@ const Liver = () => {
     try {
       if (authen) {
         const response = await axios.post(
-          "https://health-aap-backend.onrender.com/health/v1/liver",
+          "http://127.0.0.1:5000/health/v1/liver",
           formData,
           {
             headers: {
